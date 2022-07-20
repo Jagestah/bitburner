@@ -3,19 +3,16 @@
 // import { massGrow } from "./utilities/launch-grow"
 // import { massWeaken } from "./utilities/launch-weaken"
 // import * as killall from "./killall"
-export async function main(ns) {
+export async function main(ns, server = "home", targetServer = "n00dles") {
     ns.tail()
     // Get list of root hosts
     // massGrow with root hosts
     // massWeaken with specific hosts
-    const server = ns.args[0]
-    const targetServer = ns.args[1]
     const scriptCost = 1.75
-    var waitBuffer = 1000
-    var waitTime = 0
+    var waitTime = 1000
     ns.print("Fattening ", targetServer, " on ", server)
 
-    async function launchThings(scriptTarget, waitTime) {
+    async function launchThings() {
         if (maxThreads > 0){
             ns.killall(server, true)
             ns.printf("%s: %s", server, maxThreads)
@@ -48,19 +45,20 @@ export async function main(ns) {
         // If security is too low, weaken
         if (ns.getServerMinSecurityLevel(targetServer) < ns.getServerSecurityLevel(targetServer)) {
             scriptTarget = "single-weaken.js"
-            waitTime = waitBuffer + weakTime
-            ns.printf("Need to weaken by %s more", ns.getServerSecurityLevel(targetServer) - ns.getServerMinSecurityLevel(targetServer))
-            await launchThings(scriptTarget, waitTime)
+            waitTime = waitTime + weakTime
+            await launchThings()
         } else if (ns.getServerMoneyAvailable(targetServer) < ns.getServerMaxMoney(targetServer)) {
             scriptTarget = "single-grow.js"
-            waitTime = waitBuffer + growTime
-            await launchThings(scriptTarget, waitTime)
+            waitTime = waitTime + growTime
+            await launchThings()
         } else {
             fattening = false
             return "This boi fat"
             // await ns.sleep(waitTime + 1000)
             // continue // Move to next server
         }
+        
+        fattening = false
     }
 
 }

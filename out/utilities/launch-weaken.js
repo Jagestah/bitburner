@@ -1,14 +1,14 @@
 import { getRootHosts } from "./utilities/scanHosts"
 
 /** @param {NS} ns */
-export async function main(ns, targetServer="aerocorp") {
+export async function main(ns, targetServer="neo-net") {
 	ns.tail()
 	const scriptCost = 1.75
-	// const serverList = ["node"]
+	const serverList = ["node"]
 	const execTime = ns.getWeakenTime(targetServer)
-	const serverList = await getRootHosts(ns)
+	// const serverList = await getRootHosts(ns)
 	for (let index in serverList) {
-        if (!(serverList[index].includes("node"))){
+        // if (!(serverList[index].includes("node"))){
 			if (serverList[index] != "home"){
 				ns.killall(serverList[index], true)
 				var maxThreads = Math.floor(ns.getServerMaxRam(serverList[index]) / scriptCost)
@@ -27,6 +27,6 @@ export async function main(ns, targetServer="aerocorp") {
 					}
 				}
 			}
-		}
+		// }
 	}
 }

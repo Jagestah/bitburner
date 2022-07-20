@@ -1,15 +1,15 @@
 /** @param {NS} ns */
 export async function main(ns) {
 	ns.disableLog("ALL")
-    ns.tail()
+    // ns.tail()
 	const initSleep = Math.floor(Math.random() * 200)
 	await ns.sleep(initSleep)
 	var server = ns.args[0]
 	while (true) {
 		var percentMoney = ns.getServerMoneyAvailable(server) / ns.getServerMaxMoney(server)
 		var hackingChance = ns.hackAnalyzeChance(server)
-		ns.printf("host: %s, hack: %s, money: %s", server, (hackingChance*100).toFixed(2), (percentMoney*100).toFixed(2))
-		if (hackingChance < 0.50) {
+		ns.printf("host: %s, hack: %s, money: %s", server, ns.getServerMinSecurityLevel(server) - ns.getServerSecurityLevel(server), (percentMoney*100).toFixed(2))
+		if (ns.getServerMinSecurityLevel(server) < ns.getServerSecurityLevel(server)) {
 			ns.print("weakening ", server)
             // await ns.sleep(2000)
 			await ns.weaken(server)

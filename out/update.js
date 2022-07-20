@@ -2,7 +2,7 @@ import { getRootHosts } from "./utilities/scanHosts";
 
 /** @param {NS} ns */
 export async function main(ns) {
-    ns.tail()
+    // ns.tail()
     const syncList = [
         "hack.js",
         "grow.js",
@@ -11,7 +11,10 @@ export async function main(ns) {
         "aio.js",
         "single-hack.js",
         "single-grow.js",
-        "single-weaken.js",]
+        "single-weaken.js",
+        "share.js",
+        "batch-job.js"
+    ]
     const hostList = await getRootHosts(ns)
     for (let index in hostList) {
         if (hostList[index] != "home") {

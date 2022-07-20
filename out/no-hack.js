@@ -8,7 +8,7 @@ export async function main(ns) {
 	while (true) {
 		var percentMoney = ns.getServerMoneyAvailable(server) / ns.getServerMaxMoney(server)
 		var hackingChance = ns.getServerMinSecurityLevel(server) - ns.getServerSecurityLevel(server)
-		ns.printf("host: %s, security: %s, money: %s", server, (hackingChance*100).toFixed(2), (percentMoney*100).toFixed(2))
+		ns.printf("security: %s, money: %s", (hackingChance*100).toFixed(2), (percentMoney*100).toFixed(2))
 		await ns.sleep(2000)
 		// if (hackingChance < 0.15) {
 		// 	// ns.print("weakening ", server)

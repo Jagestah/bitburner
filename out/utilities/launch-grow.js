@@ -1,9 +1,10 @@
 /** @param {NS} ns */
 // var serverList = ["node-23"]
 import { getRootHosts } from "./utilities/scanHosts"
-export async function main(ns, targetServer="aerocorp") {
+export async function main(ns, targetServer="neo-net") {
 	ns.tail()
 	var serverList = await getRootHosts(ns)
+	// var serverList = ["node"]
 	const execTime = ns.getGrowTime(targetServer)
 	const scriptCost = 1.75
 	for (let index in serverList) {
