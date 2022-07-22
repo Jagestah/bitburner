@@ -12,7 +12,7 @@ export async function main(ns) {
 	const prefix = "node";
 	const playerMoney = ns.getServerMoneyAvailable("home")
 	const serverCount = 1
-	for (let i = 20; i >= 8; i--) {
+	for (let i = 20; i >= 2; i--) {
 		var ramAmount = Math.pow(2, i)
 
 		var purchaseCost = ns.getPurchasedServerCost(ramAmount) * serverCount
@@ -51,7 +51,7 @@ export async function main(ns) {
 
 	// const serverList = ns.getPurchasedServers()
 	// for (let i in serverList) {
-	// 	if (ns.getServerMaxRam(serverList[i]) < ramAmount/2){
+	// 	if (ns.getServerMaxRam(serverList[i]) < 1048576){
 	// 		ns.print("Deleting ", serverList[i])
 	// 		await ns.killall(serverList[i])
 	// 		ns.deleteServer(serverList[i])

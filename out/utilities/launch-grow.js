@@ -1,7 +1,7 @@
 /** @param {NS} ns */
 // var serverList = ["node-23"]
 import { getRootHosts } from "./utilities/scanHosts"
-export async function main(ns, targetServer="neo-net") {
+export async function main(ns, targetServer="joesguns") {
 	ns.tail()
 	var serverList = await getRootHosts(ns)
 	// var serverList = ["node"]

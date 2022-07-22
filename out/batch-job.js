@@ -5,17 +5,17 @@
 //establish target
 /** @param {NS} ns */
 export async function main(ns) {
-    ns.tail()
+    // ns.tail()
     ns.disableLog("ALL")
     ns.print("---")
     var server = ns.args[0]
     var targetServer = ns.args[1]
     const scriptCost = 1.75
-    try {
-        ns.exec("no-hack.js", "home", 1, targetServer)
-    } catch {
-        ns.print("Maybe it's already running")
-    }
+    // try {
+    //     ns.exec("no-hack.js", "home", 1, targetServer)
+    // } catch {
+    //     ns.print("Maybe it's already running")
+    // }
     // ns.print(targetServer)
 
     //establish timing
@@ -98,7 +98,7 @@ export async function main(ns) {
         // ns.printf("desiredGrowThreads %s", desiredGrowThreads)
         let [potentialBatches, batchOffset, growOffset, weakOffset] = establishTiming()
         for (let i = 1; i < potentialBatches; i++) {
-            while (batchCost >= 16 && hackTarget > 0.1) {
+            while (batchCost >= 16 && hackTarget > 0.05) {
                 let [desiredHackThreads, weakenHackThreads, desiredGrowThreads, weakenGrowThreads] = establishThreads(hackTarget)
                 batchCost = (desiredHackThreads + weakenHackThreads + desiredGrowThreads + weakenGrowThreads) * scriptCost;
                 if ((ns.getServerMaxRam(server) - ns.getServerUsedRam(server)) > batchCost){

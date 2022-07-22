@@ -1,10 +1,10 @@
 import { getRootHosts } from "./utilities/scanHosts"
 
 /** @param {NS} ns */
-export async function main(ns, targetServer="neo-net") {
+export async function main(ns, targetServer="joesguns") {
 	ns.tail()
 	const scriptCost = 1.75
-	const serverList = ["node"]
+	const serverList = ["foodnstuff","CSEC"]
 	const execTime = ns.getWeakenTime(targetServer)
 	// const serverList = await getRootHosts(ns)
 	for (let index in serverList) {
